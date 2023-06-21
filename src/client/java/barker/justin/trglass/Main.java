@@ -14,10 +14,11 @@ public class Main implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        FabricLoader.getInstance().getModContainer("translucent-glass").ifPresent(container -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(new Identifier("translucent-glass", "translucent-glass"), container, Text.literal("Translucent Glass"), ResourcePackActivationType.NORMAL);
+        FabricLoader.getInstance().getModContainer("translucent-water").ifPresent(container -> {
+            ResourceManagerHelper.registerBuiltinResourcePack(new Identifier("translucent-water", "translucent-water"), container, Text.literal("Translucent Water"), ResourcePackActivationType.NORMAL);
         });
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.GLASS, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.GLASS_PANE, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(block.minecraft.water, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(flowing_water, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(water, RenderLayer.getTranslucent());
     }
 }
