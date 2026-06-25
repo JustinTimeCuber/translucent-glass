@@ -1,24 +1,18 @@
 package barker.justin.trglass;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 
 public class Main implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
         FabricLoader.getInstance().getModContainer("translucent-glass").ifPresent(container -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(Identifier.of("translucent-glass", "translucent-glass"), container, Text.literal("Translucent Glass"), ResourcePackActivationType.DEFAULT_ENABLED);
+            ResourceLoader.registerBuiltinPack(Identifier.fromNamespaceAndPath("translucent-glass", "translucent-glass"),
+                    container, PackActivationType.DEFAULT_ENABLED);
         });
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.GLASS, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.GLASS_PANE, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(Blocks.BEACON, RenderLayer.getTranslucent());
     }
 }
